@@ -1,7 +1,44 @@
+import { useEffect, useState } from 'react';
+import io from 'socket.io-client';
+
+const socket = io('http://localhost:3001/');
+
 const App = () => {
+  const [isConnected, setIsConnected] = useState<any>(socket.connected);
+  const [lastPong, setLastPong] = useState<any>(null);
+
+  useEffect(() => {
+    socket.on('connect', () => {
+      setIsConnected(true);
+    });
+
+    socket.on('disconnect', () => {
+      setIsConnected(false);
+    });
+
+    socket.on('pong', () => {
+      setLastPong(new Date().toISOString());
+    });
+
+    /* Clean up Function - Removes Event Listeners Added to the Socket Object When the Component Mounted */
+    return () => {
+      socket.off('connect');
+      socket.off('disconnect');
+      socket.off('pong');
+    };
+  }, []);
+
+  const sendPing = () => {
+    socket.emit('ping');
+  };
+
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <div className="">
+        <p>Connected: {'' + isConnected}</p>
+        <p>Last pong: {lastPong || '-'}</p>
+        <button onClick={sendPing}>Send ping</button>
+      </div>
     </>
   );
 };
