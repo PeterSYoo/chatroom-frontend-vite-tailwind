@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 type Socket = {
@@ -10,6 +10,7 @@ type Socket = {
 
 const Chat = ({ room, username, socket, setUsername }: Socket) => {
   const [currentMessage, setCurrentMessage] = useState<string>('');
+  const textareaRef = useRef<any>(null);
 
   const navigate = useNavigate();
 
@@ -32,6 +33,8 @@ const Chat = ({ room, username, socket, setUsername }: Socket) => {
 
       await socket.emit('send_message', messageData);
     }
+
+    textareaRef.current.value = '';
   };
 
   useEffect(() => {
@@ -167,6 +170,7 @@ const Chat = ({ room, username, socket, setUsername }: Socket) => {
                   placeholder="Enter message"
                   className="p-2 px-3 w-full bg-gray-800 border border-gray-700 focus:outline-none text-white placeholder:text-gray-500"
                   onChange={(e) => setCurrentMessage(e.target.value)}
+                  ref={textareaRef}
                 />
               </div>
               <div className="col-start-11 col-span-2 border border-gray-700 p-2 bg-gray-800 rounded-md">
