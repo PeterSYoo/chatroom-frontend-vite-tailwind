@@ -31,8 +31,11 @@ const Chat = ({ room, username, socket }: Socket) => {
         <div className="w-full h-full px-20 py-20 flex flex-col justify-center items-center">
           <div className="w-full h-full flex flex-col p-3 gap-5 justify-center">
             {/* Header */}
-            <div className="h-4">
+            <div className="h-4 w-full flex justify-between items-center">
               <p className="text-gray-400">Chat Room</p>
+              <button className="text-gray-400 hover:text-white px-4 py-1">
+                Logout
+              </button>
             </div>
             {/* Grid Container */}
             <div className="border border-gray-700 p-2 grid grid-cols-12 h-full bg-gray-800 rounded-md">
@@ -82,8 +85,13 @@ const Chat = ({ room, username, socket }: Socket) => {
                 aperiam culpa voluptatibus architecto itaque nisi est officiis,
                 voluptatum nesciunt suscipit quas harum?
               </div>
-              <div className="col-start-11 col-span-2 border-r border-b border-t border-gray-700 p-2 text-gray-400 flex justify-center">
-                Users
+              <div className="col-start-11 col-span-2 border-r border-b border-t border-gray-700 text-gray-400 flex justify-center">
+                <div className="w-full flex flex-col">
+                  <div className="w-full border-b border-gray-700 h-fit flex justify-center pt-2 pb-1">
+                    Users
+                  </div>
+                  <div className="py-2 px-2">&#x2022; Apple</div>
+                </div>
               </div>
             </div>
             {/* Chat Footer */}
