@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 type Socket = {
@@ -107,7 +107,7 @@ const Chat = ({ room, username, socket, setUsername }: Socket) => {
                 voluptatum nesciunt suscipit quas harum?
               </div>
               <div className="col-start-11 col-span-2 border-r border-b border-t border-gray-700 text-gray-400 flex justify-center overflow-y-auto scrollbar-hide">
-                <div className="w-full flex flex-col overflow-y-auto scrollbar-hide">
+                <div className="w-full flex flex-col">
                   <div className="w-full border-b border-gray-700 h-fit flex justify-center pt-2 pb-1 text-sm">
                     Users
                   </div>
