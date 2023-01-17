@@ -1,18 +1,20 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 type Socket = {
   socket: any;
   username: string;
   room: string;
+  setUsername: (arg0: string) => void;
 };
 
-const Chat = ({ room, username, socket }: Socket) => {
+const Chat = ({ room, username, socket, setUsername }: Socket) => {
   const [currentMessage, setCurrentMessage] = useState<string>('');
 
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    setUsername('');
     navigate('/');
   };
 
@@ -31,6 +33,12 @@ const Chat = ({ room, username, socket }: Socket) => {
       await socket.emit('send_message', messageData);
     }
   };
+
+  useEffect(() => {
+    if (username === '') {
+      navigate('/');
+    }
+  }, []);
 
   return (
     <>
