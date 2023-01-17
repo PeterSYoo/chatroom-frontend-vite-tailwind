@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import Chat from './pages/Chat';
-import Home from './pages/Home';
+import Login from './pages/Login';
 
 const Router = () => {
   const [socket, setSocket] = useState<any>(io(import.meta.env.VITE_APP));
@@ -47,7 +47,7 @@ const Router = () => {
       <Route
         index
         element={
-          <Home
+          <Login
             isConnected={isConnected}
             lastPong={lastPong}
             sendPing={sendPing}
