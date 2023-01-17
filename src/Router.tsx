@@ -62,7 +62,6 @@ const Router = () => {
             lastPong={lastPong}
             latency={latency}
             sendPing={sendPing}
-            setUsername={setUsername}
             joinRoom={joinRoom}
             handleGuestLogin={handleGuestLogin}
           />
