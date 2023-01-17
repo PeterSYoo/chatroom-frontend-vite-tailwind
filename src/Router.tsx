@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import Chat from './pages/Chat';
 import Login from './pages/Login';
@@ -11,10 +11,18 @@ const Router = () => {
   const [username, setUsername] = useState<string>('');
   const [room, setRoom] = useState<string>('1');
 
+  const navigate = useNavigate();
+
   const joinRoom = () => {
     if (username !== '' && room !== '') {
       socket.emit('join_room', room);
     }
+  };
+
+  const handleGuestLogin = () => {
+    setUsername('GuestUser');
+    socket.emit('join_room', room);
+    navigate('/chat');
   };
 
   useEffect(() => {
@@ -53,12 +61,20 @@ const Router = () => {
             sendPing={sendPing}
             setUsername={setUsername}
             joinRoom={joinRoom}
+            handleGuestLogin={handleGuestLogin}
           />
         }
       />
       <Route
         path="/chat"
-        element={<Chat socket={socket} username={username} room={room} />}
+        element={
+          <Chat
+            socket={socket}
+            username={username}
+            room={room}
+            setUsername={setUsername}
+          />
+        }
       />
     </Routes>
   );
