@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 
-const socket = io('https://chatroom-backend-nodejs-ws.up.railway.app');
+const socket = io(import.meta.env.VITE_APP);
 
 const App = () => {
   const [isConnected, setIsConnected] = useState<any>(socket.connected);
