@@ -8,6 +8,7 @@ const Router = () => {
   const [socket, setSocket] = useState<any>(io(import.meta.env.VITE_APP));
   const [isConnected, setIsConnected] = useState<any>(socket.connected);
   const [lastPong, setLastPong] = useState<any>(null);
+  const [latency, setLatency] = useState<string>('');
   const [username, setUsername] = useState<string>('');
   const [room, setRoom] = useState<string>('1');
 
@@ -34,7 +35,8 @@ const Router = () => {
       setIsConnected(false);
     });
 
-    socket.on('pong', () => {
+    socket.on('pong', (latency: any) => {
+      setLatency(latency.toString());
       setLastPong(new Date().toISOString());
     });
 
@@ -47,7 +49,7 @@ const Router = () => {
   }, []);
 
   const sendPing = () => {
-    socket.emit('ping');
+    socket.emit('ping', Date.now());
   };
 
   return (
@@ -58,6 +60,7 @@ const Router = () => {
           <Login
             isConnected={isConnected}
             lastPong={lastPong}
+            latency={latency}
             sendPing={sendPing}
             setUsername={setUsername}
             joinRoom={joinRoom}

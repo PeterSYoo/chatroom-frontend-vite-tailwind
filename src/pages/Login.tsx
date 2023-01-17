@@ -5,6 +5,7 @@ import { RiUser3Fill } from 'react-icons/ri';
 const Login = ({
   isConnected,
   lastPong,
+  latency,
   sendPing,
   setUsername,
   joinRoom,
@@ -16,7 +17,7 @@ const Login = ({
     <>
       <div className="h-screen min-w-screen bg-gray-900">
         <div className="w-full h-full flex flex-col justify-center items-center gap-6">
-          <div className="flex flex-col justify-center items-center mt-10 w-1/3 gap-2">
+          <div className="flex flex-col justify-center items-center mt-10 w-[300px] gap-2">
             {/* Login With Google */}
             <Link
               to={{
@@ -67,8 +68,9 @@ const Login = ({
               </button>
             </Link>
           </div>
-          <div className="text-xs text-gray-500 w-1/3 flex flex-col gap-0.5">
+          <div className="text-xs text-gray-500 w-[300px]  flex flex-col gap-0.5">
             <p>Connected: {'' + isConnected}</p>
+            <p>Latency: {latency ? `${latency} ms` : '-'}</p>
             <p>Last pong: {lastPong || '-'}</p>
             <button
               className="flex justify-center items-center border border-gray-700 hover:bg-gray-900 px-2 py-1 rounded-sm"
