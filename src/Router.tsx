@@ -4,6 +4,9 @@ import { io } from 'socket.io-client';
 import Chat from './pages/Chat';
 import Login from './pages/Login';
 
+// Problem: Username gets replaced with empty string on refresh because on every re-render it will setState to it's default value.
+// Possible Solution: Get rid of username state and implement mongoDB user document and check for the username on the username prop.
+
 const Router = () => {
   const [socket, setSocket] = useState<any>(io(import.meta.env.VITE_APP));
   const [isConnected, setIsConnected] = useState<any>(socket.connected);

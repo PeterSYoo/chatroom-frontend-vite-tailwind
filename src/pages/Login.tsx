@@ -15,21 +15,21 @@ const Login = ({
   return (
     <>
       <div className="h-screen min-w-screen bg-gray-900">
-        <div className="grid grid-cols-12 h-full gap-10 py-48 max-w-[800px] mx-auto">
-          <div className="col-start-1 col-span-6 border border-gray-700 bg-gray-800 rounded-md overflow-y-auto scrollbar-hide">
+        <div className="flex flex-col md:grid grid-cols-12 h-full py-48 max-w-[800px] mx-auto px-10">
+          <div className="col-start-1 col-span-6 border border-gray-700 bg-gray-800 rounded-md overflow-y-auto scrollbar-hide h-full">
             <div className="w-full border-b border-gray-700 h-fit flex justify-center pt-2 pb-1 text text-gray-400">
-              Leaderboards
+              Top Chatters
             </div>
-            <div className=" text-gray-400 flex justify-center">
+            <div className="text-gray-400 flex justify-center">
               <div className="w-full flex flex-col">
                 <ol className="list-decimal px-6 pl-9 text-white my-3">
-                  <li>Apple</li>
+                  <li>Apple - 1523 characters</li>
                 </ol>
               </div>
             </div>
           </div>
-          <div className="w-full h-full flex flex-col justify-center items-center gap-6 col-start-7 col-span-6">
-            <div className="flex flex-col justify-center items-center mt-10 w-[300px] gap-2">
+          <div className="w-full h-full flex flex-col justify-center items-end gap-6 col-start-7 col-span-6">
+            <div className="flex flex-col justify-center items-center mt-10 md:w-[300px] gap-2 w-full">
               {/* Login With Google */}
               <div className="col-start-11 col-span-2 border border-gray-700 p-2 bg-gray-800 rounded-md w-full mt-2">
                 <button
@@ -53,7 +53,7 @@ const Login = ({
               </div>
               {/*  */}
             </div>
-            <div className="text-xs text-gray-500 w-[300px]  flex flex-col gap-0.5">
+            <div className="text-xs text-gray-500 md:w-[300px] w-full flex flex-col gap-0.5">
               <p>Connected: {'' + isConnected}</p>
               <p>Latency: {latency ? `${latency} ms` : '-'}</p>
               <p>Last Pong: {lastPong || '-'}</p>

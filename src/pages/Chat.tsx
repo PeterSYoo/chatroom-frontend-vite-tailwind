@@ -39,6 +39,7 @@ const Chat = ({ room, username, socket, setUsername }: Socket) => {
 
   useEffect(() => {
     if (username === '') {
+      console.log(username);
       navigate('/');
     }
   }, []);
