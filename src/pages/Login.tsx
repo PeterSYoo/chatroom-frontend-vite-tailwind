@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { RiUser3Fill } from 'react-icons/ri';
+import { auth, provider } from '../config/firebase-config';
+import { signInWithPopup } from 'firebase/auth';
 
 const Login = ({
   isConnected,
@@ -11,6 +13,12 @@ const Login = ({
   handleGuestLogin,
 }: any) => {
   const navigate = useNavigate();
+
+  const handleGoogleLogin = async (joinRoom: any) => {
+    const result = await signInWithPopup(auth, provider);
+    console.log(result);
+    joinRoom();
+  };
 
   return (
     <>
@@ -34,7 +42,7 @@ const Login = ({
               <div className="col-start-11 col-span-2 border border-gray-700 p-2 bg-gray-800 rounded-md w-full mt-2">
                 <button
                   className="flex justify-center items-center w-full h-full bg-gray-800 text-white border border-gray-700 hover:bg-gray-900 px-2 py-2 gap-2"
-                  onClick={joinRoom}
+                  onClick={() => handleGoogleLogin(joinRoom)}
                 >
                   <FcGoogle className="text-lg" />
                   Login With Google
